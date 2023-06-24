@@ -2,6 +2,12 @@ MOK - Aplicación de Backend generada con Django
 
 Este es el proyecto MOK, una aplicación de backend generada con Django. La estructura del proyecto es la siguiente:
 
+Requisitos:
+
+* Docker
+
+para ejecutar el proyecto solo es necesario clonarlo, y ejecutar "docker-compose up"
+
 El proyecto cuenta con 4 tablas relacionadas entre sí:
 
 - usuario
@@ -61,5 +67,18 @@ Asegúrate de reemplazar `<id>` con el ID numérico correspondiente al usuario q
     "fecha": "date"
   }
 - DELETE http://localhost:8000/pedidos/<id>/: Borra un pedido específico, identificado por su ID.
+
+Asegúrate de reemplazar `<id>` con el ID numérico correspondiente al usuario que deseas obtener o borrar.
+
+* DetallePedido
+  - GET http://localhost:8000/detallepedido/: Obtiene un listado de todos los detalle del pedido registrados. Los detalles del pedido se retornan paginados, usando la paginacion de Django, esta retorna los detallepedido paginados de a 10 detallepedido por pagina
+- GET http://localhost:8000/detallepedido/?page_number=2: Obtiene un listado de los detalle del pedido paginados por 10, si existe en la pagina
+- GET http://localhost:8000/detallepedido/<id>/: Obtiene la información de un usuario específico, identificado por su ID.
+- POST http://localhost:8000/detallepedido/: Crea un nuevo detalle del pedido. Se deben proporcionar los siguientes campos en el cuerpo de la solicitud:
+  {
+    "usuario": "str",
+    "fecha": "date"
+  }
+- DELETE http://localhost:8000/detallepedido/<id>/: Borra un detalle del pedido específico, identificado por su ID.
 
 Asegúrate de reemplazar `<id>` con el ID numérico correspondiente al usuario que deseas obtener o borrar.
