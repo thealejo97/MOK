@@ -1,4 +1,5 @@
 from MOK.usuarios.models import Usuario
+from django.core.paginator import Paginator, EmptyPage
 
 class CrearUsuarioUseCase:
     def execute(self, usuario_data):
@@ -18,17 +19,20 @@ class ObtenerUsuarioUseCase:
             return None
 
 class ObtenerTodosUsuariosUseCase:
-    def execute(self):
-        usuarios = Usuario.objects.all()
-        return usuarios
+    def execute(self, page_number, page_size):
+        usuarios = Usuario.objects.all().order_by('id')
+        paginator = Paginator(usuarios, page_size)
 
+        try:
+            page = paginator.page(page_number)
+            return page.object_list
+        except EmptyPage:
+            return []
 class BorrarUsuarioUseCase:
-    print("borrando caso uso")
     def execute(self, pk):
         try:
             usuario = Usuario.objects.get(pk=pk)
             usuario.delete()
-            print("borrandoo")
             return True
         except Usuario.DoesNotExist:
             return False

@@ -26,8 +26,10 @@ class UsuarioViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
+        page_number = int(request.query_params.get('page_number', 1))
+        page_size = 10
         use_case = ObtenerTodosUsuariosUseCase()
-        usuarios = use_case.execute()
+        usuarios = use_case.execute(page_number,page_size)
         serializer = UsuarioSerializer(usuarios, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 

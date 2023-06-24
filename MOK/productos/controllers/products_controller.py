@@ -1,6 +1,5 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from MOK.productos.models import Producto
 from MOK.productos.serializers import ProductoSerializer
 from MOK.productos.use_cases import CrearProductoUseCase, ObtenerProductoUseCase, ObtenerTodosProductosUseCase, BorrarProductoUseCase
 
