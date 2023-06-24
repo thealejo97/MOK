@@ -24,4 +24,7 @@ RUN pip3 install -r $DJANGO_DIR/requeriments.txt
 # Copiamos el proyecto
 COPY ./ .
 
+# Ejecutamos las migraciones
+RUN python manage.py migrate
+
 EXPOSE 8000
