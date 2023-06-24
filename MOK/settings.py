@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,7 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'MOK.usuarios',
+    'MOK.productos',
+    'MOK.pedidos',
+    'MOK.detallepedido',
+
 ]
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
