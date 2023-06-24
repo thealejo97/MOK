@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
+# KAFKA_SERVERS = 'kafka:9092'
+# KAFKA_TOPIC = 'pedido-creado'
+# bootstrap_servers = 'localhost:9092'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

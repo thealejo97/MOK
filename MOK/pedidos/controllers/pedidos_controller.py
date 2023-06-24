@@ -2,6 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from MOK.pedidos.serializers import PedidoSerializer
 from MOK.pedidos.use_cases import CrearPedidoUseCase,ObtenerTodosPedidosUseCase,BorrarPedidoUseCase,ObtenerPedidoUseCase
+# from ..utils import solicitar_crear_detallepedido_broker
 
 class PedidosViewSet(viewsets.ViewSet):
     """
@@ -12,8 +13,14 @@ class PedidosViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             pedido_data = serializer.validated_data
             use_case = CrearPedidoUseCase()
-            producto_creado = use_case.execute(pedido_data)
-            return Response(status=status.HTTP_201_CREATED, data=PedidoSerializer(producto_creado).data)
+            pedido_creado = use_case.execute(pedido_data)
+
+            #Cuando se cree un pedido se debe de crear el detalle del producto, para eso se planteo utilizar un broker
+            # producto_id = request.query_params.get('producto_id', 1)
+            # cantidad = request.query_params.get('cantidad', 0)
+            # solicitar_crear_detallepedido_broker(request, pedido_creado.id, producto_id, cantidad)
+
+            return Response(status=status.HTTP_201_CREATED, data=PedidoSerializer(pedido_creado).data)
         return Response(status=status.HTTP_400_BAD_REQUEST, data=serializer.errors)
 
     def retrieve(self, request, pk=None):
@@ -22,6 +29,7 @@ class PedidosViewSet(viewsets.ViewSet):
         if producto:
             return Response(status=status.HTTP_200_OK, data=PedidoSerializer(producto).data)
         return Response(status=status.HTTP_404_NOT_FOUND)
+
 
     def list(self, request):
         page_number = int(request.query_params.get('page_number', 1))

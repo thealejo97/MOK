@@ -76,8 +76,9 @@ Asegúrate de reemplazar `<id>` con el ID numérico correspondiente al usuario q
 - GET http://localhost:8000/detallepedido/<id>/: Obtiene la información de un usuario específico, identificado por su ID.
 - POST http://localhost:8000/detallepedido/: Crea un nuevo detalle del pedido. Se deben proporcionar los siguientes campos en el cuerpo de la solicitud:
   {
-    "usuario": "str",
-    "fecha": "date"
+    "pedido": "str",
+    "producto": "date"
+    "cantidad": "date"
   }
 - DELETE http://localhost:8000/detallepedido/<id>/: Borra un detalle del pedido específico, identificado por su ID.
 
