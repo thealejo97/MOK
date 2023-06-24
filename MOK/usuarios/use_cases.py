@@ -1,8 +1,4 @@
-
-from rest_framework import viewsets, status
-from rest_framework.response import Response
 from MOK.usuarios.models import Usuario
-from MOK.usuarios.serializers import UsuarioSerializer
 
 class CrearUsuarioUseCase:
     def execute(self, usuario_data):
