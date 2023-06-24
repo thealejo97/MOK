@@ -25,8 +25,10 @@ class ProductosViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
+        page_number = int(request.query_params.get('page_number', 1))
+        page_size = 10
         use_case = ObtenerTodosProductosUseCase()
-        productos = use_case.execute()
+        productos = use_case.execute(page_number, page_size)
         serializer = ProductoSerializer(productos, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
